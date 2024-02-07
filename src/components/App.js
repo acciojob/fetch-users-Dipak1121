@@ -23,7 +23,8 @@ const App = () => {
     <div className="container">
       <div className="header">
         <p>Blue Whales</p>
-        <button onClick={getData}>Get Users List</button>
+        <button className="btn"
+        onClick={getData}>Get Users List</button>
       </div>
       <table>
         <thead>
