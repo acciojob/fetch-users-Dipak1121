@@ -1,72 +1,52 @@
 
-import React, { useState } from "react";
+
+import React,{useState} from "react";
 import './../styles/App.css';
+import Axios from "axios";
 
 const App = () => {
-
-  const [showList, setShowList] = useState(false);
-
-  const [apiData, setApiData] = useState([]);
-
-  function fetchAPI(){
-
-    fetch("https://reqres.in/api/users")
-    .then((response)=>response.json())
-    .then((data)=>{
-      console.log(data.data);
-      setApiData(data.data);
-      setShowList(true);
-      console.log(apiData);
-    })
-    .catch((err)=>{
-      console.log(err);
-    })
-
-    // console.log(data);
-  }
+  const [data, setData] = useState([]);
+  const getData = () => {
+    Axios.get(
+      "https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json"
+    )
+      .then((response) => {
+        setData(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching users:", error);
+      });
+  };
+  
   return (
-    <div>
-        <div className="head">
-          <h3>Blue Whales</h3>
-          <button className="btn"
-          onClick={fetchAPI}>Get User List</button>
-          </div>
-          {/* <div className="lebels">
-            <h4>First Name</h4>
-            <h4>Last Name</h4>
-            <h4>Email</h4>
-            <h4>Avatar</h4>
-          </div> */}
-          <table>
-            <thead>
-              <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Avatar</th>
+    <div className="container">
+      <div className="header">
+        <p>Blue Whales</p>
+        <button onClick={getData}>Get Users List</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.length > 0 &&
+            data.map((item) => (
+              <tr key={item.id}>
+                <td>{item.name.split(" ")[0]}</td>
+                <td>{item.name.split(" ")[1]}</td>
+                <td>{item.email}</td>
+                <td>{item.role}</td>
               </tr>
-            </thead>
-            <tbody>
-            {
-              showList && apiData.map((item, index)=>{
-                return(
-                  <tr className="user" key={index}>
-                    <td>{item.first_name}</td>
-                    <td>{item.last_name}</td>
-                    <td>{item.email}</td>
-                    <td><img src={item.avatar} alt="No Avatar"></img></td>
-                  </tr>
-                )
-              }) 
-            }
-            </tbody>
-          </table>
-
-          {
-            !showList && <h3>No data found to display</h3>
-          }
-          
-        
+            ))}
+        </tbody>
+      </table>
+      {data.length == 0 && <div className="no-data">No data found to display.</div>}
     </div>
   )
 }
