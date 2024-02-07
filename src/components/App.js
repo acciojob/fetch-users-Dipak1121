@@ -28,7 +28,8 @@ const App = () => {
     <div>
         <div className="head">
           <h3>Blue Whales</h3>
-          <button onClick={fetchAPI}>Get User List</button>
+          <button className="btn"
+          onClick={fetchAPI}>Get User List</button>
           </div>
           <div className="lebels">
             <h4>First Name</h4>
