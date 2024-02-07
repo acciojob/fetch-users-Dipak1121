@@ -63,7 +63,7 @@ const App = () => {
           </table>
 
           {
-            (apiData.length == 0) && <h3>No data found to display</h3>
+            (apiData.length == 0) && <p>No data found to display</p>
           }
           
         
