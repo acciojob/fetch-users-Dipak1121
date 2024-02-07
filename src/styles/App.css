@@ -1,32 +1,12 @@
-.head{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 26px;
-}
-.head button{
-    padding: 10px 20px;
-    background-color: green;
-    border-radius: 10px;
-    color: white;
+td,tr,th{
     border: none;
-    font-size: 20px;
-    font-weight: 500;
 }
-.head button:hover{
-cursor: pointer;
+td, th{
+    padding: 20px;
+    min-width: 70px;
+    
 }
-.lebels{
-    display: flex;
-    justify-content: space-between;
-    background-color: black !important;
+thead{
+    background-color: black;
     color: white;
-}
-.lebels h4{
-    /* padding: 0px 10px; */
-}
-.user{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
