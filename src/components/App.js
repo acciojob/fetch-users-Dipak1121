@@ -48,7 +48,7 @@ const App = () => {
             </thead>
             <tbody>
             {
-              showList && apiData.map((item, index)=>{
+              showList ? apiData.map((item, index)=>{
                 return(
                   <tr className="user" key={index}>
                     <td>{item.first_name}</td>
@@ -57,7 +57,7 @@ const App = () => {
                     <td><img src={item.avatar} alt="No Avatar"></img></td>
                   </tr>
                 )
-              })
+              }) : <h3>No data found to display</h3>
             }
             </tbody>
           </table>
